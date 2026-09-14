@@ -3,131 +3,458 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terms of Service and Privacy Policy - DuskBot</title>
+<title>DuskBot — Terms of Service &amp; Privacy Policy</title>
+<meta name="description" content="Terms of Service and Privacy Policy for DuskBot, operated by DuskTeam.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+  :root {
+    --bg: #14111f;
+    --bg-elevated: #1b1730;
+    --bg-elevated-2: #211c3a;
+    --text: #f1eef9;
+    --text-muted: #a89ec4;
+    --text-faint: #756c93;
+    --accent: #f0a860;
+    --accent-soft: rgba(240, 168, 96, 0.14);
+    --border: rgba(255, 255, 255, 0.09);
+    --serif: "Fraunces", Georgia, serif;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    max-width: 760px;
+    margin: 0;
+    background:
+      radial-gradient(ellipse 900px 500px at 85% -10%, rgba(240, 168, 96, 0.10), transparent 60%),
+      radial-gradient(ellipse 700px 600px at -10% 20%, rgba(120, 90, 200, 0.14), transparent 55%),
+      var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--accent); text-decoration-color: rgba(240, 168, 96, 0.4); text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--accent); }
+  a:focus-visible, button:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .shell {
+    max-width: 1080px;
     margin: 0 auto;
-    padding: 40px 20px;
-    line-height: 1.6;
-    color: #222;
-    background: #fafafa;
+    padding: 0 24px;
   }
-  h1 { font-size: 1.8em; margin-bottom: 0.2em; }
-  h2 { font-size: 1.4em; margin-top: 2em; border-bottom: 2px solid #ccc; padding-bottom: 6px; }
-  h3 { font-size: 1.1em; margin-top: 1.5em; }
-  .updated { color: #666; font-size: 0.9em; margin-bottom: 1.5em; }
-  .note {
-    background: #fff3cd;
-    border-left: 4px solid #e0a800;
-    padding: 10px 15px;
-    margin: 1.5em 0;
-    font-size: 0.95em;
+
+  /* --- Header --- */
+
+  header.hero {
+    padding: 88px 0 56px;
+    border-bottom: 1px solid var(--border);
   }
-  a { color: #4f6df5; }
-  ul { padding-left: 1.3em; }
-  code { background: #eee; padding: 1px 5px; border-radius: 3px; }
-  .placeholder { background: #ffe0e0; padding: 1px 4px; border-radius: 3px; }
+
+  .kicker {
+    display: inline-block;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+  }
+
+  .kicker::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-right: 9px;
+    vertical-align: middle;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(2.1rem, 4.4vw, 3.1rem);
+    line-height: 1.12;
+    margin: 0 0 18px;
+    max-width: 16ch;
+  }
+
+  .hero-sub {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    max-width: 56ch;
+    margin: 0 0 8px;
+  }
+
+  .hero-meta {
+    color: var(--text-faint);
+    font-size: 0.88rem;
+    margin-top: 22px;
+  }
+
+  /* --- Layout: sticky TOC + content --- */
+
+  .layout {
+    display: grid;
+    grid-template-columns: 230px minmax(0, 1fr);
+    gap: 56px;
+    padding: 48px 0 96px;
+    align-items: start;
+  }
+
+  nav.toc {
+    position: sticky;
+    top: 40px;
+  }
+
+  nav.toc .toc-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+    color: var(--text-faint);
+    margin-bottom: 14px;
+  }
+
+  nav.toc ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  nav.toc > ol > li {
+    margin-bottom: 4px;
+  }
+
+  nav.toc a {
+    display: block;
+    padding: 7px 0;
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    padding-left: 12px;
+    margin-left: -13px;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+
+  nav.toc > ol > li > a {
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  nav.toc ol ol {
+    padding-left: 8px;
+  }
+
+  nav.toc ol ol a { font-size: 0.86rem; }
+
+  nav.toc a:hover { color: var(--accent); border-left-color: var(--accent); }
+
+  main {
+    min-width: 0;
+    max-width: 680px;
+  }
+
+  section.part {
+    padding-top: 8px;
+    margin-bottom: 8px;
+  }
+
+  section.part > h2 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.7rem;
+    margin: 0 0 6px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+  }
+
+  section.part:first-child > h2 { border-top: none; padding-top: 0; }
+
+  .part-note {
+    background: var(--accent-soft);
+    border: 1px solid rgba(240, 168, 96, 0.25);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-size: 0.9rem;
+    color: var(--text);
+    margin: 18px 0 32px;
+  }
+
+  .part-note strong { color: var(--accent); }
+
+  article.clause {
+    margin: 34px 0;
+  }
+
+  article.clause h3 {
+    font-size: 1.02rem;
+    font-weight: 600;
+    margin: 0 0 10px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+
+  article.clause h3 .num {
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    font-size: 0.88rem;
+    font-weight: 500;
+  }
+
+  article.clause p, article.clause li {
+    color: var(--text-muted);
+    font-size: 0.97rem;
+  }
+
+  article.clause p { margin: 0 0 12px; }
+
+  article.clause ul { margin: 0 0 12px; padding-left: 20px; }
+  article.clause li { margin-bottom: 6px; }
+
+  article.clause p:last-child { margin-bottom: 0; }
+
+  code, .mono {
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 0.88em;
+    background: var(--bg-elevated-2);
+    padding: 0.1em 0.4em;
+    border-radius: 4px;
+    color: var(--text);
+  }
+
+  /* --- Footer --- */
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 0 60px;
+    color: var(--text-faint);
+    font-size: 0.88rem;
+  }
+
+  footer .contact-line { color: var(--text-muted); margin-top: 4px; }
+
+  /* --- Mobile --- */
+
+  @media (max-width: 860px) {
+    .layout { grid-template-columns: 1fr; gap: 0; padding-top: 8px; }
+    nav.toc { position: static; margin-bottom: 40px; }
+    nav.toc details { border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; background: var(--bg-elevated); }
+    nav.toc summary { cursor: pointer; font-weight: 500; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    nav.toc summary::-webkit-details-marker { display: none; }
+    nav.toc summary::after { content: "+"; color: var(--accent); font-size: 1.1rem; }
+    nav.toc details[open] summary::after { content: "–"; }
+    nav.toc ol { margin-top: 12px; }
+    header.hero { padding: 56px 0 40px; }
+  }
 </style>
 </head>
 <body>
 
-<h1>Terms of Service and Privacy Policy</h1>
-<p class="updated"><strong>Last updated:</strong> 12/09/2026</p>
+<header class="hero">
+  <div class="shell">
+    <span class="kicker">Legal</span>
+    <h1>Terms of Service &amp; Privacy Policy</h1>
+    <p class="hero-sub">This document governs the use of DuskBot (the "Bot"), operated by DuskTeam ("we" or "us"). Please read it before using the Bot.</p>
+    <p class="hero-meta">Last updated: September 14, 2026 · Contact: <a href="mailto:duskidleteam@gmail.com">duskidleteam@gmail.com</a></p>
+  </div>
+</header>
 
-<p>This document governs the use of <strong>DuskBot</strong> (hereinafter, the "Bot"), operated by <strong>DuskTeam</strong> (hereinafter, "we" or "us"). Before using the Bot, please read the following Terms of Service and Privacy Policy carefully.</p>
+<div class="shell layout">
 
-<div class="note">
-<strong>Note:</strong> This document is an informational template and does not constitute legal advice. Although the fields are already completed, it is recommended that a lawyer review it before publishing it if the Bot grows or handles sensitive data.
+  <nav class="toc" aria-label="Table of contents">
+    <details open id="toc-details">
+      <summary>On this page</summary>
+      <ol>
+        <li><a href="#tos">1. Terms of Service</a>
+          <ol>
+            <li><a href="#tos-1-1">1.1 Acceptance</a></li>
+            <li><a href="#tos-1-2">1.2 Use requirements</a></li>
+            <li><a href="#tos-1-3">1.3 Functionality &amp; limitations</a></li>
+            <li><a href="#tos-1-4">1.4 User content</a></li>
+            <li><a href="#tos-1-5">1.5 Intellectual property</a></li>
+            <li><a href="#tos-1-6">1.6 Suspension or termination</a></li>
+            <li><a href="#tos-1-7">1.7 Liability</a></li>
+            <li><a href="#tos-1-8">1.8 Changes &amp; contact</a></li>
+          </ol>
+        </li>
+        <li><a href="#privacy">2. Privacy Policy</a>
+          <ol>
+            <li><a href="#pp-2-1">2.1 Data controller</a></li>
+            <li><a href="#pp-2-2">2.2 Data we collect</a></li>
+            <li><a href="#pp-2-3">2.3 Purposes &amp; legal bases</a></li>
+            <li><a href="#pp-2-4">2.4 Sharing of data</a></li>
+            <li><a href="#pp-2-5">2.5 Retention &amp; security</a></li>
+            <li><a href="#pp-2-6">2.6 Your rights</a></li>
+            <li><a href="#pp-2-7">2.7 Minors</a></li>
+            <li><a href="#pp-2-8">2.8 Cookies</a></li>
+            <li><a href="#pp-2-9">2.9 Policy changes</a></li>
+          </ol>
+        </li>
+        <li><a href="#contact">3. Contact</a></li>
+      </ol>
+    </details>
+  </nav>
+
+  <main>
+
+    <section class="part" id="tos">
+      <h2>1. Terms of Service</h2>
+      <p class="part-note"><strong>Note:</strong> This document is an informational template and does not constitute legal advice. It's recommended that a lawyer review it if the Bot grows or handles sensitive data.</p>
+
+      <article class="clause" id="tos-1-1">
+        <h3><span class="num">1.1</span> Acceptance</h3>
+        <p>By accessing or using the Bot, you accept these Terms of Service. If you do not agree to them, do not use the Bot. If you use the Bot on behalf of an organization, you represent that you have the authority to accept these terms on its behalf.</p>
+      </article>
+
+      <article class="clause" id="tos-1-2">
+        <h3><span class="num">1.2</span> Use requirements</h3>
+        <ul>
+          <li>You must comply with all applicable laws and regulations.</li>
+          <li>You must provide truthful information when the Bot requests it.</li>
+          <li>You must not use the Bot to harass, threaten, defraud, impersonate another person, or infringe the rights of third parties.</li>
+          <li>You must not attempt to access unauthorized systems, accounts, or data, or interfere with the Bot's operation.</li>
+          <li>You must not send illegal or malicious content, or content containing personal data of third parties without a valid legal basis or authorization.</li>
+        </ul>
+      </article>
+
+      <article class="clause" id="tos-1-3">
+        <h3><span class="num">1.3</span> Functionality &amp; limitations</h3>
+        <p>The Bot may generate automated responses (for example, via the <code>/ask</code> command) and does not guarantee that the information provided is accurate, complete, current, or suitable for a specific case. Do not use its responses as a substitute for professional medical, legal, financial, or other advice.</p>
+        <p>The Bot may become unavailable, change its features, or contain errors without prior notice. Unless expressly stated otherwise, we do not guarantee continuous availability or specific results.</p>
+      </article>
+
+      <article class="clause" id="tos-1-4">
+        <h3><span class="num">1.4</span> User content</h3>
+        <p>You retain all rights to the content you submit to the Bot — including messages, files uploaded via commands like <code>/save-code</code>, and media sent to commands like <code>/gif</code>. You grant us a limited, non-exclusive, and necessary license to host, process, and display that content in order to provide, maintain, and improve the service, in accordance with the Privacy Policy.</p>
+        <p>You are responsible for ensuring that you have the rights and permissions required to send such content, and for its legality, accuracy, and consequences.</p>
+      </article>
+
+      <article class="clause" id="tos-1-5">
+        <h3><span class="num">1.5</span> Intellectual property</h3>
+        <p>The Bot, its software, design, brand, and associated materials belong to DuskTeam or its licensors and are protected by applicable legislation. These terms do not transfer ownership rights to you.</p>
+      </article>
+
+      <article class="clause" id="tos-1-6">
+        <h3><span class="num">1.6</span> Suspension or termination</h3>
+        <p>We may limit, suspend, or terminate access to the Bot if you violate these terms, if required by law, or if necessary to protect the service, users, or third parties. You may stop using the Bot at any time.</p>
+      </article>
+
+      <article class="clause" id="tos-1-7">
+        <h3><span class="num">1.7</span> Liability</h3>
+        <p>To the maximum extent permitted by law, the Bot is provided "as is" and we are not responsible for decisions made solely based on its responses, indirect losses, interruptions, or content generated by users or third parties. Nothing in this section limits rights or warranties that cannot be excluded by law.</p>
+      </article>
+
+      <article class="clause" id="tos-1-8">
+        <h3><span class="num">1.8</span> Changes &amp; contact</h3>
+        <p>We may modify these terms when necessary. We will publish the new version on <a href="https://github.com/Idle-devx/Terms-Of-Service-and-Polity-Of-Privacy">GitHub</a> and indicate the date of update. For questions or complaints, contact us at <a href="mailto:duskidleteam@gmail.com">duskidleteam@gmail.com</a>.</p>
+      </article>
+    </section>
+
+    <section class="part" id="privacy">
+      <h2>2. Privacy Policy</h2>
+
+      <article class="clause" id="pp-2-1">
+        <h3><span class="num">2.1</span> Data controller</h3>
+        <p>The data controller is DuskTeam. You can contact us at <a href="mailto:duskidleteam@gmail.com">duskidleteam@gmail.com</a>.</p>
+      </article>
+
+      <article class="clause" id="pp-2-2">
+        <h3><span class="num">2.2</span> Data we may collect</h3>
+        <p>Depending on how you use the Bot, we may collect:</p>
+        <ul>
+          <li>Discord account/identification data, such as your username and user ID.</li>
+          <li>Content you submit to the Bot — messages sent to AI features (e.g. <code>/ask</code>), files and text saved via <code>/save-code</code>, and media submitted to commands like <code>/gif</code>.</li>
+          <li>Moderation-related data, such as reasons given for a ban, kick, mute, or unban, and which staff member performed the action.</li>
+          <li>Server configuration you set up, such as channel IDs and role IDs for tickets, moderation logs, and member verification.</li>
+          <li>Technical data, such as activity timestamps and error logs, used to operate and troubleshoot the Bot.</li>
+        </ul>
+        <p>Do not send passwords, card data, medical information, or other highly sensitive data unless the service and its legal basis explicitly allow it.</p>
+      </article>
+
+      <article class="clause" id="pp-2-3">
+        <h3><span class="num">2.3</span> Purposes &amp; legal bases</h3>
+        <p>We use your data to:</p>
+        <ul>
+          <li>provide, authenticate, and maintain the Bot;</li>
+          <li>respond to your requests and provide support;</li>
+          <li>prevent abuse, fraud, and security issues;</li>
+          <li>analyze and improve the performance of the service; and</li>
+          <li>comply with legal obligations.</li>
+        </ul>
+        <p>Where applicable, the legal bases will be the performance of a contract, consent, legitimate interest, and compliance with legal obligations. We do not collect data for purposes beyond those described here.</p>
+      </article>
+
+      <article class="clause" id="pp-2-4">
+        <h3><span class="num">2.4</span> Sharing of data</h3>
+        <p>We may share data only when necessary with providers who help us operate the Bot. This currently includes:</p>
+        <ul>
+          <li><strong>Groq</strong>, to process the text you submit through the <code>/ask</code> command and generate a response.</li>
+          <li><strong>GIPHY</strong>, to fetch a GIF image for certain automated replies. No personal data beyond the request itself is sent to GIPHY.</li>
+          <li><strong>Discord Inc.</strong>, as the platform the Bot operates on and through which all of the above is delivered.</li>
+        </ul>
+        <p>We require these providers to apply protective measures and use the data only according to our instructions. We may also share information if required by law, to respond to a legal process, or to protect the rights, security, and integrity of the service, users, or third parties.</p>
+        <p>We do not sell your personal data.</p>
+      </article>
+
+      <article class="clause" id="pp-2-5">
+        <h3><span class="num">2.5</span> Retention &amp; security</h3>
+        <p>Different data is retained for different periods, depending on what it's used for:</p>
+        <ul>
+          <li><strong>Conversation history</strong> used by <code>/ask</code> is kept only in the Bot's memory and is automatically cleared when the Bot restarts or after a period of inactivity. We do not keep a permanent database of these messages.</li>
+          <li><strong>Server configuration</strong> for features you set up — such as ticket panels, moderation-log channels, and the verification panel — including channel IDs and role IDs, is stored persistently so the feature keeps working across restarts. This does not include your messages.</li>
+          <li><strong>Ticket transcripts</strong> are generated temporarily to be uploaded to the log channel you configured; the temporary local copy is deleted immediately after upload. The transcript then exists as a message attachment inside your Discord server, governed by Discord's own retention.</li>
+          <li><strong>Files saved via <code>/save-code</code></strong> are stored persistently until a server admin deletes them or requests their removal.</li>
+        </ul>
+        <p>We apply reasonable technical and organizational measures to protect the data, but no system is completely secure. If you detect a security issue, please inform us at <a href="mailto:duskidleteam@gmail.com">duskidleteam@gmail.com</a>.</p>
+      </article>
+
+      <article class="clause" id="pp-2-6">
+        <h3><span class="num">2.6</span> Your rights</h3>
+        <p>Depending on your jurisdiction, you may request access, rectification, deletion, restriction, or objection to processing, data portability, or withdrawal of consent. To exercise these rights, write to <a href="mailto:duskidleteam@gmail.com">duskidleteam@gmail.com</a> and indicate how you use the Bot so we can locate your information. You may also file a complaint with the competent data protection authority.</p>
+      </article>
+
+      <article class="clause" id="pp-2-7">
+        <h3><span class="num">2.7</span> Minors</h3>
+        <p>The Bot is not intended for children under 13 years of age. If you believe a minor has provided personal data without authorization, contact us to request its removal.</p>
+      </article>
+
+      <article class="clause" id="pp-2-8">
+        <h3><span class="num">2.8</span> Cookies &amp; similar technologies</h3>
+        <p>We do not use cookies or similar tracking technologies.</p>
+      </article>
+
+      <article class="clause" id="pp-2-9">
+        <h3><span class="num">2.9</span> Changes to this policy</h3>
+        <p>We may update this Privacy Policy to reflect legal, technical, or service changes. We will publish the current version on <a href="https://github.com/Idle-devx/Terms-Of-Service-and-Polity-Of-Privacy">GitHub</a> and update the date shown at the top of this page.</p>
+      </article>
+    </section>
+
+    <section class="part" id="contact">
+      <h2>3. Contact</h2>
+      <article class="clause">
+        <p>Responsible party: DuskTeam</p>
+        <p class="contact-line">Email: <a href="mailto:duskidleteam@gmail.com">duskidleteam@gmail.com</a></p>
+      </article>
+    </section>
+
+  </main>
 </div>
 
-<h2>1. Terms of Service</h2>
-
-<h3>1.1 Acceptance</h3>
-<p>By accessing or using the Bot, you accept these Terms of Service. If you do not agree with them, do not use the Bot. If you use the Bot on behalf of an organization, you represent that you have the authority to accept these terms on its behalf.</p>
-
-<h3>1.2 Use Requirements</h3>
-<ul>
-  <li>You must comply with applicable laws and regulations.</li>
-  <li>You must provide truthful information when the Bot requests it.</li>
-  <li>You must not use the Bot to harass, threaten, defraud, impersonate another person, or infringe the rights of third parties.</li>
-  <li>You must not attempt to access unauthorized systems, accounts, or data, or interfere with the Bot's operation.</li>
-  <li>You must not send illegal, malicious content or content containing personal data of third parties without a valid legal basis or authorization.</li>
-</ul>
-
-<h3>1.3 Functionality and Limitations</h3>
-<p>The Bot may generate automated responses and does not guarantee that the information provided is accurate, complete, current, or suitable for a specific case. Do not use its responses as a substitute for professional medical, legal, financial, or any other advice.</p>
-<p>The Bot may become unavailable, change its features, or contain errors without prior notice. Unless expressly stated otherwise, we do not guarantee continuous availability or specific results.</p>
-
-<h3>1.4 User Content</h3>
-<p>You retain your rights over the content you submit to the Bot. You grant us a limited, non-exclusive, and necessary license to host, process, and display that content in order to provide, maintain, and improve the service, in accordance with the Privacy Policy.</p>
-<p>You must ensure that you have the rights and permissions necessary to send such content. You are responsible for its legality, accuracy, and consequences.</p>
-
-<h3>1.5 Intellectual Property</h3>
-<p>The Bot, its software, design, brand, and associated materials belong to <strong>DuskTeam</strong> or its licensors and are protected by applicable legislation. These terms do not transfer ownership rights to you.</p>
-
-<h3>1.6 Suspension or Termination</h3>
-<p>We may limit, suspend, or terminate access to the Bot if you violate these terms, if required by law, or if necessary to protect the service, users, or third parties. You may stop using the Bot at any time.</p>
-
-<h3>1.7 Liability</h3>
-<p>To the maximum extent permitted by law, the Bot is provided "as is" and we are not responsible for decisions made solely based on its responses, indirect losses, interruptions, or content generated by users or third parties. Nothing in this section limits rights or warranties that cannot be excluded by law.</p>
-
-<h3>1.8 Changes and Contact</h3>
-<p>We may modify these terms when necessary. We will publish the new version on <a href="https://github.com/Idle-devx/Terms-Of-Service-And-Polity-of-Privacy" target="_blank">github.com/Idle-devx/Terms-Of-Service-And-Polity-of-Privacy</a> and indicate the date of update. For questions or complaints, contact us at <a href="mailto:duskidleteam@gmail.com">duskidleteam@gmail.com</a>.</p>
-
-<h2>2. Privacy Policy</h2>
-
-<h3>2.1 Data Controller</h3>
-<p>The data controller is <strong>DuskTeam</strong>. You can contact us at <a href="mailto:duskidleteam@gmail.com">duskidleteam@gmail.com</a>.</p>
-
-<h3>2.2 Data We May Collect</h3>
-<p>Depending on how you use the Bot, we may collect:</p>
-<ul>
-  <li>Account or identification data, such as username, platform identifier, and email address.</li>
-  <li>Messages, files, commands, and other content you send to the Bot.</li>
-  <li>Technical data, such as IP address, device, language, activity logs, dates, and errors.</li>
-  <li>Preferences and settings necessary to provide the service.</li>
-</ul>
-<p>Do not send passwords, card data, medical information, or other highly sensitive data unless the service and its legal basis explicitly allow it.</p>
-
-<h3>2.3 Purposes and Legal Bases</h3>
-<p>We use your data to:</p>
-<ul>
-  <li>provide, authenticate, and maintain the Bot;</li>
-  <li>respond to your requests and provide support;</li>
-  <li>prevent abuse, fraud, and security issues;</li>
-  <li>analyze and improve the performance of the service; and</li>
-  <li>comply with legal obligations.</li>
-</ul>
-<p>Where applicable, the legal bases will be the performance of a contract, consent, legitimate interest, and compliance with legal obligations. We do not collect data for purposes beyond those described here.</p>
-
-<h3>2.4 Sharing of Data</h3>
-<p>We may share data only when necessary with providers who help us operate the Bot, such as hosting, analytics, support, or AI processing services (for example, the Anthropic API for generating responses). We require those providers to apply protective measures and use the data only according to our instructions.</p>
-<p>We may also share information if required by law, to respond to a legal process, or to protect the rights, security, and integrity of the service, users, or third parties.</p>
-<p>We do not sell your personal data. The only data shared with third parties are those necessary for the operation of the Bot within Discord Inc., as the platform on which it operates.</p>
-
-<h3>2.5 Retention and Security</h3>
-<p>Conversation history is stored temporarily in the Bot memory and is automatically deleted when the Bot restarts or after a period of inactivity. We do not maintain a permanent database of your messages.</p>
-<p>We apply reasonable technical and organizational measures to protect the data, but no system is completely secure. If you detect a security issue, please inform us at <a href="mailto:duskidleteam@gmail.com">duskidleteam@gmail.com</a>.</p>
-
-<h3>2.6 User Rights</h3>
-<p>Depending on your jurisdiction, you may request access, rectification, deletion, restriction, or objection to processing, data portability, or withdrawal of consent. To exercise these rights, write to <a href="mailto:duskidleteam@gmail.com">duskidleteam@gmail.com</a> and indicate how you use the Bot so we can locate your information. You may also file a complaint with the competent data protection authority.</p>
-
-<h3>2.7 Minors</h3>
-<p>The Bot is not intended for children under 13 years of age. If you believe a minor has provided personal data without authorization, please contact us to request its removal.</p>
-
-<h3>2.8 Cookies and Similar Technologies</h3>
-<p>We do not use cookies or similar tracking technologies.</p>
-
-<h3>2.9 Changes to This Policy</h3>
-<p>We may update this Privacy Policy to reflect legal, technical, or service changes. We will publish the current version on <a href="https://github.com/Idle-devx/Terms-Of-Service-And-Polity-of-Privacy" target="_blank">github.com/Idle-devx/Terms-Of-Service-And-Polity-of-Privacy</a> and update the date shown at the beginning.</p>
-
-<h2>3. Contact</h2>
-<ul>
-  <li><strong>Responsible:</strong> DuskTeam</li>
-  <li><strong>Email:</strong> <a href="mailto:duskidleteam@gmail.com">duskidleteam@gmail.com</a></li>
-</ul>
+<footer>
+  <div class="shell">
+    <p>&copy; 2026 DuskTeam. This page is published for transparency about DuskBot's Terms of Service and Privacy Policy.</p>
+  </div>
+</footer>
 
 </body>
 </html>
